@@ -14,7 +14,7 @@
     },
     {
       "data": {
-        "url": "https://github.com/isaack00/3179/raw/refs/heads/main/disaster_data.csv"
+        "url": "https://raw.githubusercontent.com/isaack00/3179/refs/heads/main/disaster_data.csv"
       },
       "mark": {"type": "circle", "tooltip": {"content": "data"}},
       "encoding": {
