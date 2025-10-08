@@ -1,0 +1,107 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Frequency of Natural Disasters (All Time)",
+  "data": {
+    "url": "https://raw.githubusercontent.com/isaack00/3179/main/disaster_data.csv"
+  },
+  "params": [
+    {
+      "name": "Group_Selection",
+      "bind": {
+        "input": "select",
+        "options": [
+          null,
+          "Meteorological",
+          "Geophysical",
+          "Hydrological",
+          "Climatological",
+          "Biological"
+        ],
+        "labels": [
+          "Show All Subgroups",
+          "Meteorological",
+          "Geophysical",
+          "Hydrological",
+          "Climatological",
+          "Biological"
+        ],
+        "name": "Filter by Disaster Subgroup: "
+      }
+    }
+  ],
+  "width": 800,
+  "height": 400,
+  "transform": [
+    {
+      "filter": "Group_Selection == null || datum['Disaster Subgroup'] == Group_Selection"
+    }
+  ],
+  "layer": [
+    {
+      "mark": "bar",
+      "encoding": {
+        "x": {
+          "field": "Disaster Type",
+          "type": "nominal",
+          "sort": "-y",
+          "axis": {"labelAngle": -45}
+        },
+        "y": {
+          "aggregate": "count",
+          "type": "quantitative",
+          "title": "Frequency (Number of Events)"
+        },
+        "tooltip": [
+          {
+            "field": "Disaster Type",
+            "type": "nominal",
+            "title": "Disaster Type"
+          },
+          {
+            "field": "Disaster Subgroup",
+            "type": "nominal",
+            "title": "Subgroup"
+          },
+          {
+            "aggregate": "count",
+            "type": "quantitative",
+            "title": "Number of Events"
+          }
+        ]
+      }
+    },
+    {
+
+
+
+      "transform": [
+        {
+          "aggregate": [{"op": "count", "as": "Frequency"}],
+          "groupby": ["Disaster Type"]
+        },
+        {
+          "window": [{"op": "rank", "as": "rank"}],
+          "sort": [{"field": "Frequency", "order": "descending"}]
+        },
+        {"filter": "datum.rank == 1"}
+
+      ],
+      "mark": {
+        "type": "text",
+        "align": "center",
+        "baseline": "bottom",
+        "dy": -10,
+        "fontSize": 14,
+        "fontStyle": "italic",
+        "text": "➞ Most Frequent"
+      },
+      "encoding": {
+        "x": {"field": "Disaster Type", "type": "nominal"},
+        "y": {"field": "Frequency", "type": "quantitative"}
+      }
+    }
+
+
+    
+  ]
+}
