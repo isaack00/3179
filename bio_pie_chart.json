@@ -1,0 +1,52 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Total Deaths by Disaster Type for Biological Events",
+  "data": {
+    "url": "https://raw.githubusercontent.com/isaack00/3179/main/disaster_data.csv"
+  },
+  "width": 300,
+  "height": 300,
+  "transform": [
+    {
+      "filter": "datum['Disaster Subgroup'] == 'Biological'"
+    },
+    {
+      "calculate": "toNumber(datum['Total Deaths'])",
+      "as": "DeathsNumeric"
+    },
+    {
+      "filter": "isValid(datum.DeathsNumeric) && datum.DeathsNumeric > 0"
+    }
+  ],
+  "mark": "arc",
+  "encoding": {
+    "angle": {
+      "field": "DeathsNumeric",
+      "type": "quantitative",
+      "aggregate": "sum"
+    },
+    "color": {
+      "field": "Disaster Type",
+      "type": "nominal",
+      "title": "Disaster Type",
+      "scale": {
+        "domain": ["Epidemic", "Animal incident"],
+        "range": ["#9e9ac8", "#bcbddc"]
+      }
+    },
+    "tooltip": [
+      {
+        "field": "Disaster Type",
+        "type": "nominal"
+      },
+      {
+        "field": "DeathsNumeric",
+        "type": "quantitative",
+        "aggregate": "sum",
+        "title": "Total Deaths",
+        "format": ","
+      }
+    ]
+  }
+}
+

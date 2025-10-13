@@ -1,0 +1,83 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Total Deaths by Disaster Type (All Subgroups)",
+  "data": {
+    "url": "https://raw.githubusercontent.com/isaack00/3179/main/disaster_data.csv"
+  },
+  "width": 400,
+  "height": 400,
+  "transform": [
+    {
+      "calculate": "toNumber(datum['Total Deaths'])",
+      "as": "DeathsNumeric"
+    },
+    {
+      "filter": "isValid(datum.DeathsNumeric) && datum.DeathsNumeric > 0"
+    }
+  ],
+  "mark": "arc",
+  "encoding": {
+    "angle": {
+      "field": "DeathsNumeric",
+      "type": "quantitative",
+      "aggregate": "sum"
+    },
+    "color": {
+      "field": "Disaster Type",
+      "type": "nominal",
+      "title": "Disaster Type",
+      "scale": {
+        "domain": [
+          "Earthquake",
+          "Volcanic activity",
+          "Mass movement (dry)",
+          "Storm",
+          "Flood",
+          "Mass movement (wet)",
+          "Glacial lake outburst flood",
+          "Drought",
+          "Extreme temperature",
+          "Wildfire",
+          "Epidemic",
+          "Animal incident"
+        ],
+        "range": [
+          "#f58518",
+          "#fd8d3c",
+          "#fdae6b",
+          "#4c78a8",
+          "#e45756",
+          "#ef9a9a",
+          "#ffcdd2",
+          "#72b7b2",
+          "#6baed6",
+          "#a5d6a7",
+          "#9e9ac8",
+          "#bcbddc"
+        ]
+      }
+    },
+    "order": {
+      "field": "Disaster Subgroup",
+      "type": "nominal"
+    },
+    "tooltip": [
+      {
+        "field": "Disaster Type",
+        "type": "nominal"
+      },
+      {
+        "field": "Disaster Subgroup",
+        "type": "nominal"
+      },
+      {
+        "field": "DeathsNumeric",
+        "type": "quantitative",
+        "aggregate": "sum",
+        "title": "Total Deaths",
+        "format": ","
+      }
+    ]
+  }
+}
+
