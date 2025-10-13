@@ -51,6 +51,28 @@
           "type": "quantitative",
           "title": "Frequency (Number of Events)"
         },
+        "color": {
+          "field": "Disaster Subgroup",
+          "type": "nominal",
+          "title": "Disaster Subgroup",
+          "legend": null,
+          "scale": {
+            "domain": [
+              "Meteorological",
+              "Geophysical",
+              "Hydrological",
+              "Climatological",
+              "Biological"
+            ],
+            "range": [
+              "#4c78a8",
+              "#f58518",
+              "#e45756",
+              "#72b7b2",
+              "#54a24b"
+            ]
+          }
+        },
         "tooltip": [
           {
             "field": "Disaster Type",
@@ -71,9 +93,6 @@
       }
     },
     {
-
-
-
       "transform": [
         {
           "aggregate": [{"op": "count", "as": "Frequency"}],
@@ -84,7 +103,6 @@
           "sort": [{"field": "Frequency", "order": "descending"}]
         },
         {"filter": "datum.rank == 1"}
-
       ],
       "mark": {
         "type": "text",
@@ -100,8 +118,6 @@
         "y": {"field": "Frequency", "type": "quantitative"}
       }
     }
-
-
-    
   ]
 }
+
