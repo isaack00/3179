@@ -1,0 +1,125 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Disaster Impact: Total Damage vs. Total Deaths",
+  "data": {
+    "url": "https://raw.githubusercontent.com/isaack00/3179/main/disaster_data.csv"
+  },
+  "params": [
+    {
+      "name": "Group_Selection",
+      "bind": {
+        "input": "select",
+        "options": [
+          null,
+          "Meteorological",
+          "Geophysical",
+          "Hydrological",
+          "Climatological"
+        ],
+        "labels": [
+          "Show All Subgroups",
+          "Meteorological",
+          "Geophysical",
+          "Hydrological",
+          "Climatological"
+        ],
+        "name": "Filter by Disaster Subgroup: "
+      }
+    }
+  ],
+  "width": 800,
+  "height": 400,
+  "transform": [
+    {
+      "calculate": "toNumber(datum['Total Deaths'])",
+      "as": "DeathsNumeric"
+    },
+    {
+      "calculate": "toNumber(datum[\"Total Damage ('000 US$)\"])",
+      "as": "DamageNumeric"
+    },
+    {
+      "filter": "isValid(datum.DeathsNumeric) && isValid(datum.DamageNumeric) && datum.DeathsNumeric >= 0 && datum.DamageNumeric >= 0"
+    },
+    {
+      "filter": "Group_Selection == null || datum['Disaster Subgroup'] == Group_Selection"
+    }
+  ],
+  "layer": [
+    {
+      "mark": {"type": "point", "filled": true, "opacity": 0.6},
+      "encoding": {
+        "x": {
+          "field": "DeathsNumeric",
+          "type": "quantitative",
+          "title": "Total Deaths (Log Scale)",
+          "scale": {"type": "log"}
+        },
+        "y": {
+          "field": "DamageNumeric",
+          "type": "quantitative",
+          "title": "Total Damage in '000 US$ (Log Scale)",
+          "scale": {"type": "log"}
+        },
+        "color": {
+          "field": "Disaster Subgroup",
+          "type": "nominal",
+          "title": "Disaster Subgroup",
+          "scale": {
+            "domain": [
+              "Meteorological",
+              "Geophysical",
+              "Hydrological",
+              "Climatological"
+            ],
+            "range": [
+              "#4c78a8",
+              "#f58518",
+              "#e45756",
+              "#72b7b2"
+            ]
+          }
+        },
+        "tooltip": [
+          {"field": "Country", "type": "nominal"},
+          {"field": "Disaster Type", "type": "nominal"},
+          {
+            "field": "DeathsNumeric",
+            "type": "quantitative",
+            "title": "Total Deaths",
+            "format": ","
+          },
+          {
+            "field": "DamageNumeric",
+            "type": "quantitative",
+            "title": "Total Damage ('000 US$)",
+            "format": ",.0f"
+          }
+        ]
+      }
+    },
+    {
+      "transform": [
+        {
+          "window": [{"op": "rank", "as": "rank"}],
+          "sort": [{"field": "DeathsNumeric", "order": "descending"}]
+        },
+        {"filter": "datum.rank == 1"}
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "middle",
+        "dx": 7,
+        "fontSize": 14,
+        "fontStyle": "italic",
+        "text": "Most Deadly Event"
+      },
+      "encoding": {
+        "x": {"field": "DeathsNumeric", "type": "quantitative"},
+        "y": {"field": "DamageNumeric", "type": "quantitative"}
+      }
+    }
+  ]
+}
+
