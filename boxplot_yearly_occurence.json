@@ -1,0 +1,51 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Distribution of Total People Affected Annually by Country",
+  "width": 500,
+  "height": 500,
+  "data": {
+    "url": "https://raw.githubusercontent.com/isaack00/3179/main/disaster_data.csv"
+  },
+  "transform": [
+    {
+      "filter": {
+        "field": "Country",
+        "oneOf": ["Australia", "United States of America", "China", "Canada", "France"]
+      }
+    },
+    {
+      "calculate": "toNumber(datum['Total Affected'])",
+      "as": "AffectedNumeric"
+    },
+    {
+      "filter": "isValid(datum.AffectedNumeric)"
+    },
+    {
+      "aggregate": [{"op": "sum", "field": "AffectedNumeric", "as": "YearlyAffectedCount"}],
+      "groupby": ["Country", "Start Year"]
+    }
+  ],
+  "mark": {
+    "type": "boxplot",
+    "extent": "min-max"
+  },
+  "encoding": {
+    "x": {
+      "field": "Country",
+      "type": "nominal",
+      "title": "Country"
+    },
+    "y": {
+      "field": "YearlyAffectedCount",
+      "type": "quantitative",
+      "title": "Total People Affected Annually (Log Scale)",
+      "scale": {"type": "log"}
+    },
+    "color": {
+      "field": "Country",
+      "type": "nominal",
+      "legend": null
+    }
+  }
+}
+
