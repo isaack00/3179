@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Global Disasters & Australian Bushfires Dashboard</title>
+    <title>Australian Natural Disasters vs The World</title>
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -19,7 +19,7 @@
 <body>
 
     <header class="text-center my-5">
-        <h1>Global Disasters & Australian Bushfires</h1>
+        <h1>Australian Natural Disasters vs The World</h1>
         <p class="lead text-muted">An interactive dashboard exploring trends and impacts from global and local datasets.</p>
     </header>
 
@@ -53,6 +53,32 @@
             </div>
         </div>
 
+
+         <!-- Section 5: Temporal Analysis (Row 5) -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <section class="card h-100">
+                    <h2>Total People Affected Over Time</h2>
+                    <p>This line chart illustrates the total number of people affected by natural disasters each year. Use the dropdown menu to filter the data by a specific disaster subgroup to see how their individual trends contribute to the overall picture.</p>
+                    <div id="line_graph_div"></div>
+                </section>
+            </div>
+        </div>
+        
+
+        <!-- Section 4: Impact Analysis (Row 4) -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <section class="card h-100">
+                    <h2>Impact: Damage vs. Deaths</h2>
+                    <p>This scatter plot explores the relationship between the financial damage (in '000 US$) and the human cost (total deaths) of individual disaster events. Both axes use a log scale to accommodate the wide range of values.</p>
+                    <div id="dot_plot_div"></div>
+                </section>
+            </div>
+        </div>
+        
+       
+
         <!-- Section 3: Detailed Breakdown (Row 3) -->
         <div class="row mb-4">
              <div class="col-lg-8">
@@ -66,28 +92,6 @@
                 <section class="card text-card h-100">
                     <h2>Key Disaster Types</h2>
                     <p>Placeholder</p>
-                </section>
-            </div>
-        </div>
-
-        <!-- Section 4: Impact Analysis (Row 4) -->
-        <div class="row mb-4">
-            <div class="col-12">
-                <section class="card h-100">
-                    <h2>Impact: Damage vs. Deaths</h2>
-                    <p>This scatter plot explores the relationship between the financial damage (in '000 US$) and the human cost (total deaths) of individual disaster events. Both axes use a log scale to accommodate the wide range of values.</p>
-                    <div id="dot_plot_div"></div>
-                </section>
-            </div>
-        </div>
-        
-        <!-- Section 5: Temporal Analysis (Row 5) -->
-        <div class="row mb-4">
-            <div class="col-12">
-                <section class="card h-100">
-                    <h2>Total People Affected Over Time</h2>
-                    <p>This line chart illustrates the total number of people affected by natural disasters each year. Use the dropdown menu to filter the data by a specific disaster subgroup to see how their individual trends contribute to the overall picture.</p>
-                    <div id="line_graph_div"></div>
                 </section>
             </div>
         </div>
