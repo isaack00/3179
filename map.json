@@ -4,9 +4,6 @@
   "height": 450,
   "title": "Global Natural Disasters Frequency",
   "projection": {"type": "equalEarth"},
-  "data": {
-    "url": "https://raw.githubusercontent.com/isaack00/3179/main/disaster_data.csv"
-  },
   "params": [
     {
       "name": "Year_Selection",
@@ -14,60 +11,77 @@
       "bind": {
         "input": "range",
         "min": 2000,
-        "max": 2023,
+        "max": 2025,
         "step": 1,
         "name": "Select Year: "
       }
     }
   ],
-  "transform": [
+  "layer": [
     {
-      "filter": "datum['Start Year'] == Year_Selection"
+      "data": {
+        "url": "world_map.json",
+        "format": {
+          "type": "topojson",
+          "feature": "world_map"
+        }
+      },
+      "mark": {"type": "geoshape", "fill": "lightgray", "stroke": "black"}
     },
     {
-      "filter": "datum.ISO != null"
-    },
-    {
-      "aggregate": [{"op": "count", "as": "Disaster Count"}],
-      "groupby": ["Country", "ISO"]
-    },
-    {
-      "lookup": "ISO",
-      "from": {
-        "data": {
-          "url": "world_map.json",
-          "format": {
-            "type": "topojson",
-            "feature": "world_map"
-          }
+      "data": {
+        "url": "https://raw.githubusercontent.com/isaack00/3179/main/disaster_data.csv"
+      },
+      "transform": [
+        {
+          "filter": "datum['Start Year'] == Year_Selection"
         },
-        "key": "properties.ADM0_A3"
+        {
+          "filter": "datum.ISO != null"
+        },
+        {
+          "aggregate": [{"op": "count", "as": "Disaster Count"}],
+          "groupby": ["Country", "ISO"]
+        },
+        {
+          "lookup": "ISO",
+          "from": {
+            "data": {
+              "url": "world_map.json",
+              "format": {
+                "type": "topojson",
+                "feature": "world_map"
+              }
+            },
+            "key": "properties.ADM0_A3"
+          },
+          "as": "geo"
+        },
+        {
+          "filter": "datum.geo != null"
+        }
+      ],
+      "mark": {
+        "type": "geoshape",
+        "stroke": "black"
       },
-      "as": "geo"
-    },
-    {
-      "filter": "datum.geo != null"
+      "encoding": {
+        "shape": {"field": "geo", "type": "geojson"},
+        "color": {
+          "field": "Disaster Count",
+          "type": "quantitative",
+          "scale": {
+            "scheme": "reds",
+            "domain": [0, 45]
+          },
+          "title": "Number of Disasters"
+        },
+        "tooltip": [
+          {"field": "Country", "type": "nominal"},
+          {"field": "Disaster Count", "type": "quantitative"}
+        ]
+      }
     }
-  ],
-  "mark": {
-    "type": "geoshape",
-    "stroke": "black"
-  },
-  "encoding": {
-    "shape": {"field": "geo", "type": "geojson"},
-    "color": {
-      "field": "Disaster Count",
-      "type": "quantitative",
-      "scale": {
-        "scheme": "reds",
-        "domain": [0, 45]
-      },
-      "title": "Number of Disasters"
-    },
-    "tooltip": [
-      {"field": "Country", "type": "nominal"},
-      {"field": "Disaster Count", "type": "quantitative"}
-    ]
-  }
+  ]
 }
 
