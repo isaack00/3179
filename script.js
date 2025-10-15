@@ -15,3 +15,4 @@ vegaEmbed('#all_pie', 'all_pie_chart.json').catch(console.error);
 
 vegaEmbed('#boxplot_div', 'boxplot_yearly_occurence.json').catch(console.error);
 
+vegaEmbed('#fire_map', 'aus_fire_hotspot.json').catch(console.error);
