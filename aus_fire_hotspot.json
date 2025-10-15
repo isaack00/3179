@@ -40,7 +40,7 @@
           "scale": {"range": ["#ffffb2", "#fecc5c", "#fd8d3c", "#f03b20", "#bd0026"]}
         },
         "tooltip": [
-          {"field": "acq_date", "type": "temporal", "title": "Date"},
+          {"field": "acq_date", "type": "ordinal", "title": "Date"},
           {"field": "bright_ti4", "type": "quantitative", "title": "Brightness (K)"}
         ]
       }
