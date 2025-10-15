@@ -1,11 +1,11 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "title": "Total Deaths by Disaster Type for Hydrological Events",
+  "title": "Total Deaths by Hydrological Events",
   "data": {
     "url": "https://raw.githubusercontent.com/isaack00/3179/main/disaster_data.csv"
   },
-  "width": 300,
-  "height": 300,
+  "width": 150,
+  "height": 150,
   "transform": [
     {
       "filter": "datum['Disaster Subgroup'] == 'Hydrological'"
