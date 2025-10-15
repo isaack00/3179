@@ -7,7 +7,23 @@
   "data": {
     "url": "https://raw.githubusercontent.com/isaack00/3179/main/disaster_data.csv"
   },
+  "params": [
+    {
+      "name": "Year_Selection",
+      "value": 2020,
+      "bind": {
+        "input": "range",
+        "min": 2000,
+        "max": 2023,
+        "step": 1,
+        "name": "Select Year: "
+      }
+    }
+  ],
   "transform": [
+    {
+      "filter": "datum['Start Year'] == Year_Selection"
+    },
     {
       "filter": "datum.ISO != null"
     },
@@ -35,14 +51,17 @@
   ],
   "mark": {
     "type": "geoshape",
-    "stroke": "white"
+    "stroke": "black"
   },
   "encoding": {
     "shape": {"field": "geo", "type": "geojson"},
     "color": {
       "field": "Disaster Count",
       "type": "quantitative",
-      "scale": {"scheme": "reds"},
+      "scale": {
+        "scheme": "reds",
+        "domain": [0, 45]
+      },
       "title": "Number of Disasters"
     },
     "tooltip": [
@@ -51,3 +70,4 @@
     ]
   }
 }
+
