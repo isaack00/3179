@@ -45,7 +45,23 @@
     "color": {
       "field": "Country",
       "type": "nominal",
-      "legend": null
+      "legend": null,
+      "scale": {
+        "domain": [
+          "China",
+          "France",
+          "Australia",
+          "United States of America",
+          "Canada"
+        ],
+        "range": [
+          "#e41a1c",
+          "#984ea3",
+          "#4daf4a",
+          "#377eb8",
+          "#ff7f00"
+        ]
+      }
     }
   }
 }
