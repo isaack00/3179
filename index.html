@@ -20,7 +20,7 @@
 
     <header class="text-center my-5">
         <h1>Australian Natural Disasters vs The World</h1>
-        <p class="lead text-muted">An interactive dashboard exploring trends and impacts from global and local datasets.</p>
+        <p class="lead text-muted">An interactive dashboard exploring trends and impacts from Australia's Black Summer to Global Impact.</p>
     </header>
 
     <main class="container">
@@ -31,6 +31,7 @@
                 <section class="card h-100">
                     <h2>Australian Fire Hotspots</h2>
                     <p>This map visualizes fire hotspots across Australia. The size and color of each circle represent the brightness temperature (in Kelvin) detected by satellites, which is a proxy for fire intensity.</p>
+                    <p>The 2019-2020 bushfire season, known as the "Black Summer," was a catastrophic event in Australia's recent history. The map below visualizes fire hotspots detected during this period using data from NASA's satellite sensors, which measure the location and brightness temperature of fires, allowing for the tracking of even small-scale events. The data reveals several key insights: firstly, the fires were predominantly concentrated along the densely populated eastern and southern coastlines. Secondly, despite the horrific scale of these coastal fires, the data shows that the most intense fires (highest brightness) were often located further north. Finally, the concentration of tracked fires around populated areas suggests two possibilities: either numerous fires in remote regions go largely uncounted, or there is a strong correlation between human activity and fire ignition.</p>
                     <div id="fire_map"></div>
                 </section>
             </div>
@@ -48,7 +49,7 @@
             <div class="col-lg-4">
                 <section class="card text-card h-100">
                     <h2>Comparing Variability</h2>
-                    <p>Placeholder</p>
+                    <p>This box plot reveals that while population size is a major factor, it is not the sole determinant of how many people are affected by natural disasters annually. China, for instance, shows the highest median of approximately 42 million people affected, a figure largely driven by its immense population. However, a more nuanced story emerges when comparing other nations. Australia, despite having a significantly smaller population than Canada (24 million vs. 41 million), consistently records a higher number of people affected. This is likely indicative of Australia's population distribution, which is heavily concentrated along coastlines that are prone to large-scale events like the bushfires shown elsewhere on this dashboard. Conversely, France, with a much larger population of 66 million, shows a lower median than Australia, suggesting that its more concentrated population centres and lower frequency of major natural disasters result in fewer people being impacted.</p>
                 </section>
             </div>
         </div>
@@ -60,6 +61,7 @@
                 <section class="card h-100">
                     <h2>Total People Affected Over Time</h2>
                     <p>This line chart illustrates the total number of people affected by natural disasters each year. Use the dropdown menu to filter the data by a specific disaster subgroup to see how their individual trends contribute to the overall picture.</p>
+                    <p>This temporal analysis reveals several key patterns in how disasters impact global populations. While there are notable spikes caused by major climatological events in 2002 and 2015, it is hydrological disasters, such as floods, that consistently affect a high number of people year after year. Surprisingly, geological events like earthquakes, despite their prominence in public awareness, impact a comparatively smaller number of people on a global scale. Perhaps the most significant trend is the gradual decline in the total number of people affected over time. However, this does not necessarily mean fewer disasters are happening; rather, it could be an indication of global population shifts, with communities moving away from high-risk areas.</p>
                     <div id="line_graph_div"></div>
                 </section>
             </div>
@@ -72,6 +74,7 @@
                 <section class="card h-100">
                     <h2>Impact: Damage vs. Deaths</h2>
                     <p>This scatter plot explores the relationship between the financial damage (in '000 US$) and the human cost (total deaths) of individual disaster events. Both axes use a log scale to accommodate the wide range of values.</p>
+                    <p>This scatter plot reveals a clear positive association between the financial damage and the human cost of natural disasters. Events with higher death tolls tend to also have higher damage costs. However, distinct patterns emerge when comparing disaster subgroups. Both Hydrological and Meteorological events are largely clustered, with most causing between 1 and 100 deaths and having a financial impact under $100,000. In stark contrast, Geophysical disasters stand out for producing some of the most catastrophic outliers. These events not only have a higher average damage cost but are also responsible for some of the most incredibly deadly events in the dataset, such as the 2010 Haiti earthquake, which resulted in a staggering 222,570 deaths. This highlights a fundamental difference in risk: while storms and floods are frequent and costly, earthquakes and similar events carry the potential for unparalleled human tragedy.</p>
                     <div id="dot_plot_div"></div>
                 </section>
             </div>
@@ -91,7 +94,7 @@
             <div class="col-lg-4">
                 <section class="card text-card h-100">
                     <h2>Key Disaster Types</h2>
-                    <p>Placeholder</p>
+                    <p>This chart highlights the true frequency of disaster types, which can sometimes challenge public perception. The data clearly shows that Flood is the most common disaster globally. Despite the well-known devastation they cause, events like Earthquakes are significantly less frequent than floods or major storms. Other categories are even rarer; for instance, in the last 25 years, only 29 Infestation events were recorded, primarily limited to developing nations. For an Australian audience, it is particularly noteworthy that Wildfires, while a common and significant threat locally, are a relatively small category on a global scale compared to other major disasters.</p>
                 </section>
             </div>
         </div>
@@ -107,13 +110,14 @@
                     
                     <!-- Top row with large pie chart and text -->
                     <div class="row align-items-center mb-4">
-                        <div class="col-lg-8">
+                        <div class="col-lg-6">
                             <div id="all_pie"></div>
                         </div>
-                        <div class="col-lg-4">
+                        <div class="col-lg-6">
                             <div class="text-area">
                                 <h4>Interpreting the Breakdown</h4>
-                                <p>Placeholder</p>
+                                <p>This breakdown of total deaths reveals a critical insight: a disaster's frequency does not always correlate with its human cost. Although Earthquakes are not the most common events, they are responsible for nearly 50% of all deaths in this dataset, which explains their prominence in public awareness. Similarly, Extreme temperature emerges as a significant threat; while seemingly less dramatic, its impact is severe in countries without widespread access to heating and cooling.</p>
+                                <p>The smaller pie charts provide a more granular view of the Hydrological, Climatological, and Meteorological subgroups. It is particularly noteworthy that Wildfires make up only a small fraction of climatological deaths on a global scale. This is a stark reminder of the unique devastation of events like Australia's Black Summer, where the greatest loss of life was not human, but the billions of native animals that could not anticipate or evacuate the flames.</p>
                             </div>
                         </div>
                     </div>
@@ -140,6 +144,9 @@
                 <section class="card h-100">
                     <h2>Global Disaster Frequency by Country</h2>
                     <p>This map shows the frequency of natural disasters across the globe for a selected year. Countries with a higher frequency are shaded in a darker red. Use the slider to explore how disaster frequency has changed over time. Countries with no recorded data for the selected year are shown in grey.</p>
+                    <p>This map reveals distinct geographic hotspots for disaster frequency. The United States, China, and the islands north of Australia consistently appear as dark red, indicating that these regions experience a high number of disaster events, not just a high number of people affected due to population density. A significant pattern is also the large number of grey countries across Africa. This does not imply an absence of natural disasters, but rather likely reflects an under-reporting of smaller, less catastrophic events in the global dataset.
+
+In this context, Australia's position is noteworthy. For most years, the country records fewer than 10 major disasters, a relatively low number for a developed nation of its size. This can be partly attributed to its fortunate location on a stable tectonic plate, which minimizes seismic risk. However, the nation is not entirely safe, as Northern Australia remains exposed to seasonal cyclones. This relative safety from a wide range of catastrophic events, particularly in the southern states, may have been a contributing factor to the growth of Melbourne and Sydney as major, concentrated hubs for population and economic activity.</p>
                     <div id="symbol_map"></div>
                 </section>
             </div>
@@ -152,8 +159,9 @@
                 <section class="card h-100">
                     <h2>Metadata</h2>
                     <p>Author: Isaac Katsaros</p>
+                    <p>Date: 16-10-2025</p>
                     <p>Dataset 1: https://www.kaggle.com/datasets/nagarajbhat/australian-bush-fire-satellite-data-nasa?select=fire_nrt_M6_101673.csv </p>
-                    <p>Dataset 2: https://public.emdat.be/ (Must create a free account to access the data), Used all natural disasters data from 2000 to September this month</p>
+                    <p>Dataset 2: https://public.emdat.be/ (Must create a free account to access the data), Used all natural disasters data from 2000 to September 2025</p>
                 </section>
             </div>
         </div>
